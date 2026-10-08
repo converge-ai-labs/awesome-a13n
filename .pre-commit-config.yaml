@@ -3,7 +3,7 @@ repos:
     rev: v6.0.0
     hooks:
       - id: check-added-large-files
-        args: [--maxkb=1024, --enforce-all]
+        args: [--maxkb=256, --enforce-all]
       - id: check-case-conflict
       - id: check-merge-conflict
       - id: check-json

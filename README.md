@@ -16,17 +16,21 @@ This collection is just getting started. Have a project, use case, integration, 
 
 ### Local checks
 
-With Python 3.13 available in your development environment, install the tooling and Git hooks:
+With [uv](https://docs.astral.sh/uv/) installed, synchronize the locked development environment and install the Git hooks:
 
 ```bash
-python -m pip install -r requirements-dev.txt
-pre-commit install
-pre-commit run --all-files
+uv sync --locked
+uv run --locked pre-commit install
+uv run --locked pre-commit run --all-files
 ```
 
-The hooks format Markdown (including GitHub-flavored tables), validate YAML and JSON, and check whitespace, final newlines, merge conflicts, filename case conflicts, and files larger than 1 MiB. If a hook updates files, review and stage the changes before committing again.
+uv manages Python 3.13 and the development dependencies for both local checks and CI.
 
-The **Auto lint** workflow runs the same checks on pull requests and pushes to `main`. It reports failures and formatting diffs without pushing automatic commits.
+The hooks format Markdown (including GitHub-flavored tables), validate YAML and JSON, and check whitespace, final newlines, merge conflicts, filename case conflicts, and files larger than 256 KiB. If a hook updates files, review and stage the changes before committing again.
+
+The **Auto lint** workflow runs the same checks on pull requests and pushes to `main`. After verifying automatic fixes, it appends a `style(lint): apply automatic formatting fixes` commit to same-repository PR branches or the branch being checked on push/manual runs. It never amends commits or force-pushes. Fixes are checked again within the same run, since pushes made with `GITHUB_TOKEN` do not trigger another workflow run.
+
+Fork PRs are check-only: formatting changes are shown in the log and must be applied by the contributor. Non-fixable errors fail CI and prevent automatic commits.
 
 ## License
 
