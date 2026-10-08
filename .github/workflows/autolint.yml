@@ -1,0 +1,67 @@
+name: Auto lint
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: pre-commit
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      # GitHub downgrades this to read-only for fork pull requests.
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.11.32"
+          enable-cache: true
+
+      - name: Synchronize lint tooling
+        run: uv sync --locked
+
+      - name: Run pre-commit and apply fixes
+        continue-on-error: true
+        run: uv run --locked pre-commit run --all-files --show-diff-on-failure
+
+      - name: Verify fixes
+        run: uv run --locked pre-commit run --all-files --show-diff-on-failure
+
+      - name: Append automatic fix commit
+        if: >-
+          github.event_name != 'pull_request' ||
+          github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          GH_TOKEN: ${{ github.token }}
+          HEAD_BRANCH: ${{ github.head_ref || github.ref_name }}
+        run: |
+          if git diff --quiet; then
+            exit 0
+          fi
+          git add --update
+          git -c user.name='github-actions[bot]' \
+            -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+            commit -m 'style(lint): apply automatic formatting fixes'
+          auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
+          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" \
+            push origin "HEAD:refs/heads/$HEAD_BRANCH"
+
+      - name: Require a clean working tree
+        run: git diff --exit-code
