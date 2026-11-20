@@ -19,6 +19,8 @@ Installable application extensions for a13n Service. App plugins run with Servic
 
 **Build your own:** Start with the [App plugin authoring guide](https://github.com/converge-ai-labs/agent-foundation/blob/main/docs/a13n-service/app-plugins.md) and the [Cookiecutter template](https://github.com/converge-ai-labs/agent-foundation/tree/template/app-plugin) for full-stack, frontend-only, or backend-only projects.
 
+- [a13n-channels](https://github.com/saurlax/a13n-channels) by [saurlax](https://github.com/saurlax) — Connect messaging platforms and event sources in Console, route incoming messages to agents, and let agents read permitted history and reply in the source channel. [Build and install](https://github.com/saurlax/a13n-channels#build-and-install) from source against its [pinned Service commit](https://github.com/saurlax/a13n-channels/blob/main/.service-ref). Upstream license not specified.
+
 ## Examples & Recipes
 
 - [Agent application](https://github.com/converge-ai-labs/agent-foundation/tree/main/examples/agent-app) — Run an offline streaming chat with Harness and resume the same conversation after a restart.
