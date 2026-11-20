@@ -1,0 +1,25 @@
+name: Suggest a resource
+description: Add an App plugin, runnable example, tool, or project built with a13n.
+title: "[Resource]: "
+body:
+  - type: input
+    id: url
+    attributes:
+      label: Public link
+      description: Link to the project, documentation, or write-up.
+    validations:
+      required: true
+  - type: textarea
+    id: use-case
+    attributes:
+      label: What does it do?
+      description: Explain the problem it solves and how it uses a13n.
+    validations:
+      required: true
+  - type: textarea
+    id: try-it
+    attributes:
+      label: How can someone try it or see the outcome?
+      description: Link to setup instructions, a runnable example, a demo, or a write-up. For Service App plugins, include the Service version or commit and the upstream license if specified.
+    validations:
+      required: true
