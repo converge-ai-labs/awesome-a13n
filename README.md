@@ -1,37 +1,43 @@
 # Awesome Agent Foundation (a13n)
 
-A curated collection of projects, practical use cases, integrations, and guides for [Agent Foundation (a13n)](https://github.com/converge-ai-labs/agent-foundation).
+A curated directory of App plugins, runnable examples, and tools for [Agent Foundation (a13n)](https://github.com/converge-ai-labs/agent-foundation).
 
-Discover what people build with a13n, how it works, and what you can reuse. This repository is an index: code and detailed documentation stay in their source repositories.
+Built a plugin, workflow, or project with a13n? [Suggest a resource](https://github.com/converge-ai-labs/awesome-a13n/issues/new?template=suggest-a-resource.yml) or [add it with a pull request](CONTRIBUTING.md).
 
-## Start here
+[Documentation](https://a13n.converge.ai/docs/) · [Official examples](https://github.com/converge-ai-labs/agent-foundation/tree/main/examples)
 
-- [Agent Foundation](https://github.com/converge-ai-labs/agent-foundation) — The open-source library and self-hosted platform for building and running your own agent systems.
-- [Documentation](https://a13n.converge.ai/docs/) — Guides for Harness, Service, and Harness UI.
-- [Official examples](https://github.com/converge-ai-labs/agent-foundation/tree/main/examples) — Runnable examples from the main repository.
+## Contents
 
-## Contribute
+- [App Plugins](#app-plugins)
+- [Examples & Recipes](#examples--recipes)
+- [SDKs & Tools](#sdks--tools)
+- [Contributing](#contributing)
 
-This collection is just getting started. Have a project, use case, integration, or guide to share? Open an issue or pull request with a link, a short description of the problem it solves, and any available code or demo.
+## App Plugins
 
-### Local checks
+Installable application extensions for a13n Service. App plugins run with Service process permissions; review third-party packages before installing them.
 
-With [uv](https://docs.astral.sh/uv/) installed, synchronize the locked development environment and install the Git hooks:
+**Build your own:** Start with the [App plugin authoring guide](https://github.com/converge-ai-labs/agent-foundation/blob/main/docs/a13n-service/app-plugins.md) and the [Cookiecutter template](https://github.com/converge-ai-labs/agent-foundation/tree/template/app-plugin) for full-stack, frontend-only, or backend-only projects.
 
-```bash
-uv sync --locked
-uv run --locked pre-commit install
-uv run --locked pre-commit run --all-files
-```
+## Examples & Recipes
 
-uv manages Python 3.13 and the development dependencies for both local checks and CI.
+- [Agent application](https://github.com/converge-ai-labs/agent-foundation/tree/main/examples/agent-app) — Run an offline streaming chat with Harness and resume the same conversation after a restart.
+- [MCP Apps counter](https://github.com/converge-ai-labs/agent-foundation/tree/main/examples/mcp-apps) — Open an interactive tool result in Harness UI and see how MCP interactions retain state between calls.
+- [Reports App](https://github.com/converge-ai-labs/agent-foundation/tree/main/examples/service-app-plugin) — Build a Service App wheel with a reporting page, settings, and a workspace home view, using demo data.
 
-The hooks format Markdown (including GitHub-flavored tables), validate YAML and JSON, and check whitespace, final newlines, merge conflicts, filename case conflicts, and files larger than 256 KiB. If a hook updates files, review and stage the changes before committing again.
+## SDKs & Tools
 
-The **Auto lint** workflow runs the same checks on pull requests and pushes to `main`. After verifying automatic fixes, it appends a `style(lint): apply automatic formatting fixes` commit to same-repository PR branches or the branch being checked on push/manual runs. It never amends commits or force-pushes. Fixes are checked again within the same run, since pushes made with `GITHUB_TOKEN` do not trigger another workflow run.
+Official clients for a13n Service:
 
-Fork PRs are check-only: formatting changes are shown in the log and must be applied by the contributor. Non-fixable errors fail CI and prevent automatic commits.
+- [Go SDK](https://github.com/converge-ai-labs/a13n-sdk-go)
+- [Python SDK](https://github.com/converge-ai-labs/a13n-sdk-python)
+- [Rust SDK and CLI](https://github.com/converge-ai-labs/a13n-sdk-rust) — Includes the remote `a13n-service-cli`.
+- [TypeScript SDK](https://github.com/converge-ai-labs/a13n-sdk-typescript)
+
+## Contributing
+
+[Suggest a resource](https://github.com/converge-ai-labs/awesome-a13n/issues/new?template=suggest-a-resource.yml) or follow the [contribution guide](CONTRIBUTING.md). For a project or case study, tell us what you built, how you used a13n, and what someone can try or learn from it.
 
 ## License
 
-This repository is licensed under the [MIT License](LICENSE). Linked projects and resources retain their own licenses.
+This directory is licensed under the [MIT License](LICENSE). Linked projects and resources retain their own licenses.
