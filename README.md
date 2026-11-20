@@ -10,9 +10,9 @@ Discover what people build with a13n, how it works, and what you can reuse. This
 - [Documentation](https://a13n.converge.ai/docs/) — Guides for Harness, Service, and Harness UI.
 - [Official examples](https://github.com/converge-ai-labs/agent-foundation/tree/main/examples) — Runnable examples from the main repository.
 
-## Integrations
+## App Plugins
 
-- [Channel Gateway](https://github.com/saurlax/channel-gateway) — Connect a13n agents to QQ, Weixin, and other messaging platforms, with conversation routing and scoped MCP tools for reading conversations and sending messages across channels. [Setup guide](https://github.com/saurlax/channel-gateway/blob/main/docs/agent-hosts.md).
+- [a13n-channels](https://github.com/saurlax/a13n-channels) — Manage QQ bots, Weixin ClawBot, and GitHub channels in a13n Console. Route incoming messages to Agents and let them read conversation history and reply through the source channel. [Setup guide](https://github.com/saurlax/a13n-channels#open-the-app-in-console).
 
 ## Contribute
 
